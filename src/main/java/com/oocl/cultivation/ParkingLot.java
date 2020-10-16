@@ -27,6 +27,6 @@ public class ParkingLot {
     }
 
     public Boolean isParkingLotFull() {
-        return mapTicketCar.size() == capacity;
+        return mapTicketCar.size() >= capacity;
     }
 }
