@@ -18,7 +18,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_correct_car_when_fetch_given_correct_ticket(){
+    void should_return_correct_car_when_fetch_given_correct_ticket() {
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
@@ -30,7 +30,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_two_correct_cars_when_fetch_with_corresponding_tickets_given_two_cars_and_parked(){
+    void should_return_two_correct_cars_when_fetch_with_corresponding_tickets_given_two_cars_and_parked() {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -53,9 +53,8 @@ class ParkingBoyTest {
         parkingBoy.park(car);
         ParkingTicket wrongTicket = new ParkingTicket();
         //when
-        Car fetchedCar = parkingBoy.fetch(wrongTicket);
         //then
-        assertNull(fetchedCar);
+        assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(wrongTicket));
     }
 
     @Test
