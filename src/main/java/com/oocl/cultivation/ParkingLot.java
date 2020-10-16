@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    private final Map<ParkingTicket,Car> mapTicketCar= new HashMap<>();
-    public ParkingTicket park(Car car){
+    private final Map<ParkingTicket, Car> mapTicketCar = new HashMap<>();
+
+    public ParkingTicket park(Car car) {
         ParkingTicket newTicket = new ParkingTicket();
-        mapTicketCar.put(newTicket,car);
+        mapTicketCar.put(newTicket, car);
         return newTicket;
     }
 
