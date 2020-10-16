@@ -78,7 +78,7 @@ class ParkingBoyTest {
         //when
         parkingBoy.fetch(parkingTicket);
         //then
-        assertNull(parkingBoy.fetch(parkingTicket));
+        assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(parkingTicket));
     }
 
 
