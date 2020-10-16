@@ -47,11 +47,20 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetch_given_wrong_ticket() {
         //given
-        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = new ParkingTicket();
         //when
         Car fetchedCar = parkingBoy.fetch(parkingTicket);
+        //then
+        assertNull(fetchedCar);
+    }
+
+    @Test
+    void should_return_no_car_when_fetch_given_no_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        //when
+        Car fetchedCar = parkingBoy.fetch(null);
         //then
         assertNull(fetchedCar);
     }
