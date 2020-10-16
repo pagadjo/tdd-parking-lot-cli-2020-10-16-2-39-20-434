@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -17,7 +18,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_correct_car_when_fetch_given_correct_ticket() {
+    void should_return_correct_car_when_fetch_given_correct_ticket(){
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
@@ -29,7 +30,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_two_correct_cars_when_fetch_with_corresponding_tickets_given_two_cars_and_parked() {
+    void should_return_two_correct_cars_when_fetch_with_corresponding_tickets_given_two_cars_and_parked(){
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -64,9 +65,8 @@ class ParkingBoyTest {
         Car car = new Car();
         parkingBoy.park(car);
         //when
-        Car fetchedCar = parkingBoy.fetch(null);
         //then
-        assertNull(fetchedCar);
+        assertThrows(TicketNotProvidedException.class, () -> parkingBoy.fetch(null));
     }
 
 
@@ -89,11 +89,10 @@ class ParkingBoyTest {
         Car car1 = new Car();
         Car car2 = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
-        ParkingTicket parkingTicket1 = parkingBoy.park(car1);
-        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
+        parkingBoy.park(car1);
         //when
-        parkingBoy.fetch(parkingTicket1);
+        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
         //then
-        assertNull(parkingBoy.fetch(parkingTicket2));
+        assertNull(parkingTicket2);
     }
 }
