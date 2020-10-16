@@ -6,7 +6,7 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
     public ParkingTicket park(Car car){
-        return new ParkingTicket();
+        return parkingLot.park(car);
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
