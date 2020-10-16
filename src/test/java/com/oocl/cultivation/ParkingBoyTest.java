@@ -88,10 +88,13 @@ class ParkingBoyTest {
         Car car1 = new Car();
         Car car2 = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
-        parkingBoy.park(car1);
-        //when
-        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
         //then
-        assertNull(parkingTicket2);
+        assertThrows(NotEnoughPositionException.class, () -> {
+
+            //when
+            parkingBoy.park(car1);
+            parkingBoy.park(car2);
+
+        });
     }
 }
