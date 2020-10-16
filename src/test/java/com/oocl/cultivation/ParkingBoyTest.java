@@ -9,7 +9,7 @@ class ParkingBoyTest {
     void should_return_ticket_when_parking_boy_park_car_given_car() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         //when
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //then
@@ -20,7 +20,7 @@ class ParkingBoyTest {
     void should_return_correct_car_when_fetch_given_correct_ticket() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //when
         Car expectedCar = parkingBoy.fetch(parkingTicket);
@@ -33,7 +33,7 @@ class ParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         ParkingTicket parkingTicket1 = parkingBoy.park(car1);
         ParkingTicket parkingTicket2 = parkingBoy.park(car2);
         //when
@@ -47,7 +47,7 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetch_given_wrong_ticket() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         Car car = new Car();
         parkingBoy.park(car);
         ParkingTicket wrongTicket = new ParkingTicket();
@@ -60,7 +60,7 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetch_given_no_ticket() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         Car car = new Car();
         parkingBoy.park(car);
         //when
@@ -74,7 +74,7 @@ class ParkingBoyTest {
     void should_return_no_car_when_fetch_given_used_ticket() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //when
         parkingBoy.fetch(parkingTicket);
@@ -88,13 +88,12 @@ class ParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         ParkingTicket parkingTicket1 = parkingBoy.park(car1);
         ParkingTicket parkingTicket2 = parkingBoy.park(car2);
         //when
         parkingBoy.fetch(parkingTicket1);
-        Car fetchedCar2 = parkingBoy.fetch(parkingTicket2);
         //then
-        assertEquals("Cannot park, full capacity.",fetchedCar2);
+        assertNull(parkingBoy.fetch(parkingTicket2));
     }
 }
