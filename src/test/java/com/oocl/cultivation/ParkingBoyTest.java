@@ -81,4 +81,20 @@ class ParkingBoyTest {
         //then
         assertNull(parkingBoy.fetch(parkingTicket));
     }
+
+
+    @Test
+    void should_return_failed_and_no_ticket_returned_when_park_car_given_parking_capacity_1_and_car_parked() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingTicket parkingTicket1 = parkingBoy.park(car1);
+        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
+        //when
+        parkingBoy.fetch(parkingTicket1);
+        Car fetchedCar2 = parkingBoy.fetch(parkingTicket2);
+        //then
+        assertEquals("Cannot park, full capacity.",fetchedCar2);
+    }
 }
