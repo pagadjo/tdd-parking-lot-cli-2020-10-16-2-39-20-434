@@ -3,6 +3,8 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+
 public class ParkingLot {
     private Map<ParkingTicket, Car> mapTicketCar = new HashMap<>();
     private int capacity;
@@ -16,13 +18,17 @@ public class ParkingLot {
             ParkingTicket newTicket = new ParkingTicket();
             mapTicketCar.put(newTicket, car);
             return newTicket;
+        } else {
+            throw new NotEnoughPositionException("Not Enough Position!");
         }
-        return null;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
         Car car = mapTicketCar.get(parkingTicket);
         mapTicketCar.remove(parkingTicket);
+        if (isNull(car)) {
+            throw new UnrecognizedParkingTicketException("Wrong Ticket! Kindly provide a correct one.");
+        }
         return car;
     }
 
