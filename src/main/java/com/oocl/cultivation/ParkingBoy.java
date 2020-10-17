@@ -13,9 +13,9 @@ public class ParkingBoy {
 
     public ParkingTicket park(Car car) {
         for (int x = 0; x < parkingLotList.size(); x++) {
-            if (parkingLotList.get(0).isParkingLotFull()) {
+            if (parkingLotList.get(x).isParkingLotFull()) {
                 if (parkingLotList.size() > 1) {
-                    return parkingLotList.get(1).park(car);
+                    return parkingLotList.get(x+1).park(car);
                 } else {
                     throw new NotEnoughPositionException("Not Enough Position!");
                 }
