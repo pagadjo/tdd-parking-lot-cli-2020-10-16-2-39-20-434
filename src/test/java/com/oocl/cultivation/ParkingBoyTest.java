@@ -115,18 +115,20 @@ class ParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
+        Car car3 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingLot parkingLot3 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ParkingLot parkingLot3 = new ParkingLot(1);
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         parkingLotList.add(parkingLot3);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-        //when
         parkingBoy.park(car1);
-        ParkingTicket parkingTicketOfCar2 = parkingBoy.park(car2);
+        parkingBoy.park(car2);
+        //when
+        ParkingTicket parkingTicketOfCar3 = parkingBoy.park(car3);
         //then
-        assertNotNull(parkingLot2.fetch(parkingTicketOfCar2));
+        assertNotNull(parkingBoy.fetch(parkingTicketOfCar3));
     }
 }
