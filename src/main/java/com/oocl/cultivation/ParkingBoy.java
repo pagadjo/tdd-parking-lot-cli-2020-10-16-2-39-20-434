@@ -12,12 +12,12 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        for (int x = 0; x < parkingLotList.size(); x++) {
-            if (parkingLotList.get(x).isParkingLotFull()) {
-                if (parkingLotList.size() > 1) {
-                    return parkingLotList.get(x+1).park(car);
+        if (parkingLotList.size() > 1) {
+            for (int x = 0; x < parkingLotList.size(); x++) {
+                if (parkingLotList.get(x).isParkingLotFull()) {
+                    continue;
                 } else {
-                    throw new NotEnoughPositionException("Not Enough Position!");
+                    return parkingLotList.get(x).park(car);
                 }
             }
         }
@@ -28,9 +28,14 @@ public class ParkingBoy {
         if (isNull(parkingTicket)) {
             throw new TicketNotProvidedException("Please provide your parking ticket.");
         }
-        for (ParkingLot lot : parkingLotList) {
-            return lot.fetch(parkingTicket);
+
+        Car car = null;
+        for (ParkingLot parkingLot : parkingLotList) {
+            car = parkingLot.fetch(parkingTicket);
         }
-        return null;
+        if (isNull(car)) {
+            throw new UnrecognizedParkingTicketException("Wrong Ticket! Kindly provide a correct one.");
+        }
+        return car;
     }
 }
