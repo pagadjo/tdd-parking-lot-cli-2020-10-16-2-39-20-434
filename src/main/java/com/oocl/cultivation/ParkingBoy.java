@@ -28,6 +28,9 @@ public class ParkingBoy {
         if (isNull(parkingTicket)) {
             throw new TicketNotProvidedException("Please provide your parking ticket.");
         }
-        return parkingLotList.get(0).fetch(parkingTicket);
+        for (ParkingLot lot : parkingLotList) {
+            return lot.fetch(parkingTicket);
+        }
+        return null;
     }
 }
