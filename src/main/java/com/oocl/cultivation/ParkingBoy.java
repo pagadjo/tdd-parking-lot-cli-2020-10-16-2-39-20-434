@@ -12,13 +12,14 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        if (parkingLotList.get(0).isParkingLotFull()) {
-            if (parkingLotList.size() > 1) {
-                return parkingLotList.get(1).park(car);
-            } else {
-                throw new NotEnoughPositionException("Not Enough Position!");
+        for (int x = 0; x < parkingLotList.size(); x++) {
+            if (parkingLotList.get(0).isParkingLotFull()) {
+                if (parkingLotList.size() > 1) {
+                    return parkingLotList.get(1).park(car);
+                } else {
+                    throw new NotEnoughPositionException("Not Enough Position!");
+                }
             }
-
         }
         return parkingLotList.get(0).park(car);
     }
