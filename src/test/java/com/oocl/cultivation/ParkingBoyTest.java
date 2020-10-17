@@ -3,6 +3,10 @@ package com.oocl.cultivation;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -10,18 +14,21 @@ class ParkingBoyTest {
     void should_return_ticket_when_parking_boy_park_car_given_car() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         //when
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //then
         assertNotNull(parkingTicket);
+
     }
 
     @Test
     void should_return_correct_car_when_fetch_given_correct_ticket() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //when
         Car expectedCar = parkingBoy.fetch(parkingTicket);
@@ -34,7 +41,8 @@ class ParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         ParkingTicket parkingTicket1 = parkingBoy.park(car1);
         ParkingTicket parkingTicket2 = parkingBoy.park(car2);
         //when
@@ -48,7 +56,8 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetch_given_wrong_ticket() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         Car car = new Car();
         parkingBoy.park(car);
         ParkingTicket wrongTicket = new ParkingTicket();
@@ -60,7 +69,8 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetch_given_no_ticket() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         Car car = new Car();
         parkingBoy.park(car);
         //when
@@ -73,7 +83,8 @@ class ParkingBoyTest {
     void should_return_no_car_when_fetch_given_used_ticket() {
         //given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //when
         parkingBoy.fetch(parkingTicket);
@@ -87,7 +98,8 @@ class ParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         //then
         assertThrows(NotEnoughPositionException.class, () -> {
 
@@ -96,5 +108,25 @@ class ParkingBoyTest {
             parkingBoy.park(car2);
 
         });
+    }
+
+    @Test
+    void should_park_in_next_parking_lot_when_parking_cars_given_first_parking_lot_is_full() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingLot parkingLot3 = new ParkingLot(10);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        parkingLotList.add(parkingLot3);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        //when
+        parkingBoy.park(car1);
+        ParkingTicket parkingTicketOfCar2 = parkingBoy.park(car2);
+
+        assertNotNull(parkingLot2.fetch(parkingTicketOfCar2));
     }
 }
