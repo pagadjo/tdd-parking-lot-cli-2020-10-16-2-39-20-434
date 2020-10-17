@@ -17,6 +17,7 @@ public class ParkingLot {
         if (!isParkingLotFull()) {
             ParkingTicket newTicket = new ParkingTicket();
             mapTicketCar.put(newTicket, car);
+            System.out.println(capacity);
             return newTicket;
         } else {
             throw new NotEnoughPositionException("Not Enough Position!");
