@@ -126,7 +126,7 @@ class ParkingBoyTest {
         //when
         parkingBoy.park(car1);
         ParkingTicket parkingTicketOfCar2 = parkingBoy.park(car2);
-
+        //then
         assertNotNull(parkingLot2.fetch(parkingTicketOfCar2));
     }
 }
