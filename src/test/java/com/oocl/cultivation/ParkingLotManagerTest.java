@@ -46,6 +46,7 @@ class ParkingLotManagerTest {
         List<ParkingBoy> parkingBoysList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
+        parkingLotList.add(parkingLot3);
 //        when
         ParkingLotManager parkingLotManager;
         ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot1));
