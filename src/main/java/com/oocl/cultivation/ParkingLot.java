@@ -13,27 +13,35 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public ParkingTicket park(Car car) {
+    ParkingTicket park(Car car) {
         if (!isParkingLotFull()) {
             ParkingTicket newTicket = new ParkingTicket();
             mapTicketCar.put(newTicket, car);
-            System.out.println(capacity);
             return newTicket;
         } else {
             throw new NotEnoughPositionException("Not Enough Position!");
         }
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
+    Car fetch(ParkingTicket parkingTicket) {
         Car car = mapTicketCar.get(parkingTicket);
         mapTicketCar.remove(parkingTicket);
-        if (isNull(car)) {
-            throw new UnrecognizedParkingTicketException("Wrong Ticket! Kindly provide a correct one.");
-        }
         return car;
     }
 
-    public Boolean isParkingLotFull() {
+    Boolean isParkingLotFull() {
         return mapTicketCar.size() >= capacity;
+    }
+
+    int availableParkingSpace() {
+        return capacity - mapTicketCar.size();
+    }
+
+    double positionRate() {
+        return (double) availableParkingSpace() / (double) capacity;
+    }
+
+    int parkedCarsCount(){
+        return mapTicketCar.size();
     }
 }
