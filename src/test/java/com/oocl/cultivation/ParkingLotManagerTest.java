@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,4 +35,29 @@ class ParkingLotManagerTest {
         //then
         assertSame(car, expectedCar);
     }
+
+    @Test
+    void should_return_list_of_parking_boys_when_get_list_given_three_parking_boys() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(15);
+        ParkingLot parkingLot2 = new ParkingLot(20);
+        ParkingLot parkingLot3 = new ParkingLot(20);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        List<ParkingBoy> parkingBoysList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+//        when
+        ParkingLotManager parkingLotManager;
+        ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot1));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(parkingLot2));
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(parkingLot3));
+        parkingBoysList.add(parkingBoy);
+        parkingBoysList.add(smartParkingBoy);
+        parkingBoysList.add(superSmartParkingBoy);
+        parkingLotManager = new ParkingLotManager(parkingBoysList,parkingLotList);
+        //then
+
+        assertEquals(3, parkingLotManager.parkingBoysListCount());
+    }
+
 }
