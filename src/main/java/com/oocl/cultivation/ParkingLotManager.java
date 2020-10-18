@@ -2,20 +2,19 @@ package com.oocl.cultivation;
 
 import java.util.List;
 
-public class ParkingLotManager extends ParkingBoy {
-    List<ParkingLot> parkingLotList;
-
+public class ParkingLotManager extends ParkingBoy{
+    private List<ParkingLot> parkingLotList;
     public ParkingLotManager(List<ParkingLot> parkingLotList) {
         super(parkingLotList);
+        this.parkingLotList = parkingLotList;
     }
-
     public ParkingTicket park(Car car) {
         if (parkingLotList.size() > 1) {
-            for (int x = 0; x < parkingLotList.size(); x++) {
-                if (parkingLotList.get(x).isParkingLotFull()) {
+            for (ParkingLot parkingLot : parkingLotList) {
+                if (parkingLot.isParkingLotFull()) {
                     continue;
                 } else {
-                    return parkingLotList.get(x).park(car);
+                    return parkingLot.park(car);
                 }
             }
         }
