@@ -12,13 +12,13 @@ class SuperSmartParkingBoyTest {
 
     void parkManyCars(SuperSmartParkingBoy superSmartParkingBoy, int carCount) {
         Car car = new Car();
-        for (int x = 0; x <= carCount; x++) {
+        for (int x = 0; x < carCount; x++) {
             superSmartParkingBoy.park(car);
         }
     }
 
     @Test
-    void should_park_in_second_parking_lot_when_parking_cars_given_second_parking_lot_has_larger_available_position_rate() {
+    void should_park_in_first_parking_lot_when_parking_a_car_given_first_parking_lot_has_larger_available_position_rate() {
         //given
         Car car1 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(15);
@@ -35,9 +35,8 @@ class SuperSmartParkingBoyTest {
         //when
         superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList);
         superSmartParkingBoy.park(car1);
-        ParkingTicket parkingTicketOfCar1 = superSmartParkingBoy.park(car1);
         //then
-        assertNotNull(parkingLot1.fetch(parkingTicketOfCar1));
+        assertEquals(4, parkingLot1.parkedCarsCount());
 
     }
 
