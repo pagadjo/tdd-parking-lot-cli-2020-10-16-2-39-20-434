@@ -14,9 +14,9 @@ class ParkingLotManagerTest {
         //given
         Car car = new Car();
         List<ParkingLot> parkingLotList = Collections.singletonList(new ParkingLot(10));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLotList);
         //when
-        ParkingTicket parkingTicket = parkingBoy.park(car);
+        ParkingTicket parkingTicket = parkingLotManager.park(car);
         //then
         assertNotNull(parkingTicket);
 
@@ -27,10 +27,10 @@ class ParkingLotManagerTest {
         //given
         Car car = new Car();
         List<ParkingLot> parkingLotList = Collections.singletonList(new ParkingLot(10));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-        ParkingTicket parkingTicket = parkingBoy.park(car);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLotList);
+        ParkingTicket parkingTicket = parkingLotManager.park(car);
         //when
-        Car expectedCar = parkingBoy.fetch(parkingTicket);
+        Car expectedCar = parkingLotManager.fetch(parkingTicket);
         //then
         assertSame(car, expectedCar);
     }
