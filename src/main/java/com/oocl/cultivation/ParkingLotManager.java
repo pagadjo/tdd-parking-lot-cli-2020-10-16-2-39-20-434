@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLotManager extends ParkingBoy {
@@ -8,25 +9,19 @@ public class ParkingLotManager extends ParkingBoy {
 
     public ParkingLotManager(List<ParkingLot> parkingLotList) {
         super(parkingLotList);
-        this.parkingLotList = parkingLotList;
+        parkingLotBoysList = new ArrayList<>();
     }
 
-    List<ParkingBoy> getParkingLotBoysList(List<ParkingBoy> parkingBoysList){
-        return this.parkingLotBoysList = parkingBoysList;
+
+    public void addParkingBoyToList(ParkingBoy parkingBoy){
+        parkingLotBoysList.add(parkingBoy);
     }
 
     public int parkingBoysListCount() {
         return parkingLotBoysList.size();
     }
 
-    public ParkingTicket park(Car car) {
-        if (parkingLotList.size() > 1) {
-            for (ParkingLot parkingLot : parkingLotList) {
-                if (Boolean.FALSE.equals(parkingLot.isParkingLotFull())) {
-                    return parkingLot.park(car);
-                }
-            }
-        }
-        return parkingLotList.get(0).park(car);
+    List<ParkingBoy> getParkingLotBoysList(List<ParkingBoy> parkingBoysList){
+        return this.parkingLotBoysList = parkingBoysList;
     }
 }

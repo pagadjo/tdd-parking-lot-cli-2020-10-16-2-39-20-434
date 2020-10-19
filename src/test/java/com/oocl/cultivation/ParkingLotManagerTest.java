@@ -3,6 +3,7 @@ package com.oocl.cultivation;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,11 +53,10 @@ class ParkingLotManagerTest {
         ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot1));
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Collections.singletonList(parkingLot2));
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(parkingLot3));
-        parkingBoysList.add(parkingBoy);
-        parkingBoysList.add(smartParkingBoy);
-        parkingBoysList.add(superSmartParkingBoy);
         parkingLotManager = new ParkingLotManager(parkingLotList);
-        parkingLotManager.getParkingLotBoysList(parkingBoysList);
+        parkingLotManager.addParkingBoyToList(parkingBoy);
+        parkingLotManager.addParkingBoyToList(smartParkingBoy);
+        parkingLotManager.addParkingBoyToList(superSmartParkingBoy);
         //then
 
         assertEquals(3, parkingLotManager.parkingBoysListCount());
@@ -89,6 +89,11 @@ class ParkingLotManagerTest {
         assertThrows(UnrecognizedParkingTicketException.class, () ->
                 smartParkingBoy.fetch(parkingTicket)
         );
+    }
+
+    @Test
+    void should_manager_add_to_management_list_when_managing_given_parking_boys(){
+
     }
 
 }
