@@ -12,8 +12,7 @@ public class ParkingLotManager extends ParkingBoy {
         parkingLotBoysList = new ArrayList<>();
     }
 
-
-    public void addParkingBoyToList(ParkingBoy parkingBoy){
+    public void addParkingBoyToList(ParkingBoy parkingBoy) {
         parkingLotBoysList.add(parkingBoy);
     }
 
@@ -21,7 +20,19 @@ public class ParkingLotManager extends ParkingBoy {
         return parkingLotBoysList.size();
     }
 
-    List<ParkingBoy> getParkingLotBoysList(List<ParkingBoy> parkingBoysList){
+    List<ParkingBoy> getParkingLotBoysList(List<ParkingBoy> parkingBoysList) {
         return this.parkingLotBoysList = parkingBoysList;
+    }
+
+    public ParkingTicket park(Car car, ParkingBoy parkingBoy) {
+        if (parkingLotBoysList.contains(parkingBoy)) {
+            return parkingBoy.park(car);
+        } else throw new NotEnoughPositionException("Not Enough Position");
+    }
+
+    public Car fetch(ParkingTicket parkingTicket, ParkingBoy parkingBoy) {
+        if (parkingLotBoysList.contains(parkingBoy)) {
+            return parkingBoy.fetch(parkingTicket);
+        } else throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket");
     }
 }
