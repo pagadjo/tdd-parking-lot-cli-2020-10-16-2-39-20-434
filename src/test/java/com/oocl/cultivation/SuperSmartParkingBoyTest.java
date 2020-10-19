@@ -8,35 +8,25 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SuperSmartParkingBoyTest {
+class SuperSmartParkingBoyTest extends ParkingBoyTest{
 
-    void parkManyCars(SuperSmartParkingBoy superSmartParkingBoy, int carCount) {
-        Car car = new Car();
-        for (int x = 0; x < carCount; x++) {
-            superSmartParkingBoy.park(car);
-        }
-    }
-
+    private ParkingLot parkingLot1 = new ParkingLot();
+    private ParkingLot parkingLot2 = new ParkingLot();
     @Test
     void should_park_in_first_parking_lot_when_parking_a_car_given_first_parking_lot_has_larger_available_position_rate() {
         //given
-        Car car1 = new Car();
-        ParkingLot parkingLot1 = new ParkingLot(15);
-        ParkingLot parkingLot2 = new ParkingLot(20);
+        parkingLot1.setCapacity(15);
+        parkingLot2.setCapacity(20);
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
 
         SuperSmartParkingBoy superSmartParkingBoy;
-        superSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(parkingLot1));
-        parkManyCars(superSmartParkingBoy, 3);
-        superSmartParkingBoy = new SuperSmartParkingBoy(Collections.singletonList(parkingLot2));
-        parkManyCars(superSmartParkingBoy, 5);
-        //when
         superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList);
-        superSmartParkingBoy.park(car1);
+        //when
+        parkManyCars(superSmartParkingBoy, 3);
         //then
-        assertEquals(4, parkingLot1.parkedCarsCount());
+        assertEquals(2, parkingLot2.parkedCarsCount());
 
     }
 
