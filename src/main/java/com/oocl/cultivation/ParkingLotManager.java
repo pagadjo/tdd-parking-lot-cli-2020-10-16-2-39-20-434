@@ -22,9 +22,7 @@ public class ParkingLotManager extends ParkingBoy {
     public ParkingTicket park(Car car) {
         if (parkingLotList.size() > 1) {
             for (ParkingLot parkingLot : parkingLotList) {
-                if (parkingLot.isParkingLotFull()) {
-                    continue;
-                } else {
+                if (Boolean.FALSE.equals(parkingLot.isParkingLotFull())) {
                     return parkingLot.park(car);
                 }
             }
