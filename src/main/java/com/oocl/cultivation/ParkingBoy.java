@@ -10,14 +10,13 @@ public class ParkingBoy {
     public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
-
     public ParkingTicket park(Car car) {
         if (parkingLotList.size() > 1) {
-            for (int x = 0; x < parkingLotList.size(); x++) {
-                if (parkingLotList.get(x).isParkingLotFull()) {
+            for (ParkingLot parkingLot : parkingLotList) {
+                if (parkingLot.isParkingLotFull()) {
                     continue;
                 } else {
-                    return parkingLotList.get(x).park(car);
+                    return parkingLot.park(car);
                 }
             }
         }
