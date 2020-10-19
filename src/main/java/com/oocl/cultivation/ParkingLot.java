@@ -6,10 +6,19 @@ import java.util.Map;
 import static com.oocl.cultivation.Constants.NOT_ENOUGH_POSITION;
 
 public class ParkingLot {
+    private static final int DEFAULT_CAPACITY = 10;
     private Map<ParkingTicket, Car> mapTicketCar = new HashMap<>();
     private int capacity;
 
     public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public ParkingLot() {
+        this.capacity = DEFAULT_CAPACITY;
+    }
+
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -41,7 +50,7 @@ public class ParkingLot {
         return (double) availableParkingSpace() / (double) capacity;
     }
 
-    int parkedCarsCount(){
+    int parkedCarsCount() {
         return mapTicketCar.size();
     }
 }
