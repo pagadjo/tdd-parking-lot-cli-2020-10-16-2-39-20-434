@@ -3,8 +3,6 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.Objects.isNull;
-
 public class ParkingLot {
     private Map<ParkingTicket, Car> mapTicketCar = new HashMap<>();
     private int capacity;
