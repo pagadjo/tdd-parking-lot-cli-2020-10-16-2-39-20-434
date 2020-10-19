@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import java.util.List;
 
+import static com.oocl.cultivation.Constants.*;
 import static java.util.Objects.isNull;
 
 public class ParkingBoy {
@@ -10,6 +11,7 @@ public class ParkingBoy {
     public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
+
     public ParkingTicket park(Car car) {
         if (parkingLotList.size() > 1) {
             for (ParkingLot parkingLot : parkingLotList) {
@@ -23,7 +25,7 @@ public class ParkingBoy {
 
     public Car fetch(ParkingTicket parkingTicket) {
         if (isNull(parkingTicket)) {
-            throw new TicketNotProvidedException("Please provide your parking ticket.");
+            throw new TicketNotProvidedException(PROVIDE_TICKET);
         }
 
         Car car = null;
@@ -31,7 +33,7 @@ public class ParkingBoy {
             car = parkingLot.fetch(parkingTicket);
         }
         if (isNull(car)) {
-            throw new UnrecognizedParkingTicketException("Wrong Ticket! Kindly provide a correct one.");
+            throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
         }
         return car;
     }
