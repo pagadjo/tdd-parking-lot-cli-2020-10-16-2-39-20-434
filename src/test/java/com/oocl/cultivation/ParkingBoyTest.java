@@ -26,7 +26,6 @@ class ParkingBoyTest {
     private ParkingLot parkingLot2 = new ParkingLot();
     private ParkingLot parkingLot3 = new ParkingLot();
     private ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot1));
-    ;
 
     @Test
     void should_return_ticket_when_parking_boy_park_car_given_car() {
