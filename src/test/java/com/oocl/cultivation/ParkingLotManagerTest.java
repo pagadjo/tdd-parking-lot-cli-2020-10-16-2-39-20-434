@@ -55,7 +55,8 @@ class ParkingLotManagerTest {
         parkingBoysList.add(parkingBoy);
         parkingBoysList.add(smartParkingBoy);
         parkingBoysList.add(superSmartParkingBoy);
-        parkingLotManager = new ParkingLotManager(parkingBoysList, parkingLotList);
+        parkingLotManager = new ParkingLotManager(parkingLotList);
+        parkingLotManager.getParkingLotBoysList(parkingBoysList);
         //then
 
         assertEquals(3, parkingLotManager.parkingBoysListCount());
@@ -79,7 +80,8 @@ class ParkingLotManagerTest {
         parkingBoysList.add(parkingBoy);
         parkingBoysList.add(smartParkingBoy);
         parkingBoysList.add(superSmartParkingBoy);
-        parkingLotManager = new ParkingLotManager(parkingBoysList, parkingLotList);
+        parkingLotManager = new ParkingLotManager(parkingLotList);
+        parkingLotManager.getParkingLotBoysList(parkingBoysList);
 //        when
         ParkingTicket parkingTicket = parkingLotManager.park(car1);
         //then

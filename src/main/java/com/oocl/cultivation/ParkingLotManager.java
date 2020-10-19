@@ -11,10 +11,8 @@ public class ParkingLotManager extends ParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
-    public ParkingLotManager(List<ParkingBoy> parkingBoysList, List<ParkingLot> parkingLotList) {
-        super(parkingLotList);
-        this.parkingLotBoysList = parkingBoysList;
-        this.parkingLotList = parkingLotList;
+    List<ParkingBoy> getParkingLotBoysList(List<ParkingBoy> parkingBoysList){
+        return this.parkingLotBoysList = parkingBoysList;
     }
 
     public int parkingBoysListCount() {
