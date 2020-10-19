@@ -14,7 +14,7 @@ public class ParkingLot {
     }
 
     ParkingTicket park(Car car) {
-        if (!isParkingLotFull()) {
+        if (Boolean.FALSE.equals(isParkingLotFull())) {
             ParkingTicket newTicket = new ParkingTicket();
             mapTicketCar.put(newTicket, car);
             return newTicket;
