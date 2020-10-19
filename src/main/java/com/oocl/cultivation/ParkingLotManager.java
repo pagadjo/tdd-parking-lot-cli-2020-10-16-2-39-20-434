@@ -1,5 +1,8 @@
 package com.oocl.cultivation;
 
+import static com.oocl.cultivation.Constants.NOT_ENOUGH_POSITION;
+import static com.oocl.cultivation.Constants.UNRECOGNIZED_PARKING_TICKET;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +30,16 @@ public class ParkingLotManager extends ParkingBoy {
     public ParkingTicket park(Car car, ParkingBoy parkingBoy) {
         if (parkingLotBoysList.contains(parkingBoy)) {
             return parkingBoy.park(car);
-        } else throw new NotEnoughPositionException("Not Enough Position");
+        } else {
+            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
+        }
     }
 
     public Car fetch(ParkingTicket parkingTicket, ParkingBoy parkingBoy) {
         if (parkingLotBoysList.contains(parkingBoy)) {
             return parkingBoy.fetch(parkingTicket);
-        } else throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket");
+        } else {
+            throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
+        }
     }
 }
