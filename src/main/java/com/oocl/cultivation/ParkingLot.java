@@ -3,6 +3,8 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.oocl.cultivation.Constants.NOT_ENOUGH_POSITION;
+
 public class ParkingLot {
     private Map<ParkingTicket, Car> mapTicketCar = new HashMap<>();
     private int capacity;
@@ -17,7 +19,7 @@ public class ParkingLot {
             mapTicketCar.put(newTicket, car);
             return newTicket;
         } else {
-            throw new NotEnoughPositionException("Not Enough Position!");
+            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
         }
     }
 
