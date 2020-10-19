@@ -102,7 +102,7 @@ class ParkingLotManagerTest {
         Car car = new Car();
         ParkingTicket parkingTicket = parkingLotManager.park(car, parkingBoy);
         //then
-        assertNotNull(parkingLotManager.fetch(parkingTicket));
+        assertNotNull(parkingLotManager.fetch(parkingTicket, parkingBoy));
     }
 
 }
