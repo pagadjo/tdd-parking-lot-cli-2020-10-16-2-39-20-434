@@ -65,7 +65,6 @@ class ParkingLotManagerTest {
     @Test
     void should_return_error_message_when_manager_park_a_car_given_parking_boy_fetch_the_car() {
         //given
-        Car car1 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
         ParkingLot parkingLot3 = new ParkingLot(1);
@@ -83,6 +82,7 @@ class ParkingLotManagerTest {
         parkingLotManager = new ParkingLotManager(parkingLotList);
         parkingLotManager.getParkingLotBoysList(parkingBoysList);
 //        when
+        Car car1 = new Car();
         ParkingTicket parkingTicket = parkingLotManager.park(car1);
         //then
 
@@ -92,8 +92,17 @@ class ParkingLotManagerTest {
     }
 
     @Test
-    void should_manager_add_to_management_list_when_managing_given_parking_boys(){
-
+    void should_parking_boy_fetch_car_when_manager_assign_parking_boy_and_car_given_parking_boy_and_a_car(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot1));
+        ParkingLotManager parkingLotManager = new ParkingLotManager(Collections.singletonList(parkingLot1));
+        parkingLotManager.addParkingBoyToList(parkingBoy);
+        //when
+        Car car = new Car();
+        ParkingTicket parkingTicket = parkingLotManager.park(car, parkingBoy);
+        //then
+        assertNotNull(parkingLotManager.fetch(parkingTicket));
     }
 
 }
